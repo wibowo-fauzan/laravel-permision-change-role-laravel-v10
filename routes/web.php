@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/login', [AuthController::class, 'login']);
 
@@ -27,9 +29,12 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 
 
 // untuk admin
-Route::group(['middleware' => ['auth', 'checkrole:1']], function () {});
+Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
+    Route::get('/admin', [AdminController::class, 'home']);
+});
 
 // untuk user
 Route::group(['middleware' => ['auth', 'checkrole:2', 'verified']], function () {
+    Route::get('/', [GuestController::class, 'home']);
     Route::get('/home', [UserController::class, 'home']);
 });

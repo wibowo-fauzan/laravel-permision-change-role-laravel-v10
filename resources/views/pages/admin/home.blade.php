@@ -1,4 +1,4 @@
-@extends('layouts.apploginregister')
+@extends('layouts.appadmin')
 
 @section('title', 'Login | DocWibi Online Web Tutorial')
 <meta name="description"
@@ -19,7 +19,7 @@
 @section('og_image', 'link_ke_image_og.jpg')
 @section('content')
     <div class="container">
-        <h1>in adalah halaman users</h1>
+        <h1>in adalah halaman admin</h1>
         <form action="/logout" method="post">
             @csrf
             <button type="submit">Log Out</button>
