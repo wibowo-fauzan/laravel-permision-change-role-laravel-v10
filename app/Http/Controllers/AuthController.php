@@ -57,10 +57,10 @@ class AuthController extends Controller
 
             if (auth()->user()->role_id === 1) {
                 // jika user dashboard/admin/doc-wibi
-                return redirect()->intended('/dashboard/admin/doc-wibi');
+                return redirect()->intended('/admin');
             } else {
                 // jika user pegawai
-                return redirect()->intended('/doc-code');
+                return redirect()->intended('/home');
             }
         }
 

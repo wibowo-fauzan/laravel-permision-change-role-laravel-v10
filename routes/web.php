@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\UserController;
 
-Route::get('/', [PageController::class, 'home']);
-// Route::get('/', [PageController::class, 'home']);/doc-wibi-online
+Route::get('/login', [AuthController::class, 'login']);
 
 //  jika user belum login
 Route::group(['middleware' => 'guest'], function () {
@@ -27,8 +26,10 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2']], function () {
 });
 
 
-// untuk dashboard/admin/doc-wibi
+// untuk admin
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {});
 
-// untuk pegawai
-Route::group(['middleware' => ['auth', 'checkrole:2', 'verified']], function () {});
+// untuk user
+Route::group(['middleware' => ['auth', 'checkrole:2', 'verified']], function () {
+    Route::get('/home', [UserController::class, 'home']);
+});

@@ -1,4 +1,4 @@
-@extends('layouts.authapp')
+@extends('layouts.apploginregister')
 
 {{-- @section('contents')
     <div class="d-flex justify-content-center align-items-center vh-100">
